@@ -13,3 +13,6 @@ widelec_38.jpg: widelec
 00000000.jpg: lyzka
 knife_9.jpg: noz
 00000077.jpg: widelec
+00000100.png: widelec
+widelec_41.jpg: widelec
+00000009.jpeg: widelec

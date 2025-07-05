@@ -6,11 +6,12 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 import os
 
-# Załaduj model
-model = tf.keras.models.load_model('../mobilenet_model.keras')
-klasy = ['lyzka', 'noz', 'widelec']  # Kolejność zgodna z danymi treningowymi
 
-# Funkcja predykcji
+model = tf.keras.models.load_model('../mobilenet_model.keras')
+klasy = ['lyzka', 'noz', 'widelec']
+
+
+
 def przewidz_klase(img_path):
     img = image.load_img(img_path, target_size=(224, 224))
     x = image.img_to_array(img)
@@ -19,7 +20,7 @@ def przewidz_klase(img_path):
     index = np.argmax(pred)
     return klasy[index], pred[index]
 
-# Interfejs
+
 plik_obrazka = None
 
 def wczytaj_plik():
@@ -31,7 +32,7 @@ def wczytaj_plik():
         canvas.image = img_tk
         canvas.create_image(0, 0, anchor='nw', image=img_tk)
 
-        # Przewidz i zaktualizuj UI
+
         klasa, pewnosc = przewidz_klase(plik_obrazka)
         wynik_label.config(text=f"🧠 To wygląda na: {klasa.upper()} ({pewnosc*100:.1f}%)")
         popraw_label.config(text=f"Zgadzasz się z modelem?")
@@ -57,7 +58,7 @@ def popraw_etykiete():
     for klasa in klasy:
         tk.Button(top, text=klasa.upper(), width=15, command=lambda k=klasa: [zapisz_etykiete(k), top.destroy()]).pack(pady=5)
 
-# GUI
+
 root = tk.Tk()
 root.title("Rozpoznawanie sztućców")
 
